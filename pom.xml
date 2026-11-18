@@ -36,6 +36,7 @@
             <artifactId>axe-selenium</artifactId>
             <version>3.0</version>
         </dependency>
+
     </dependencies>
 
     <properties>
