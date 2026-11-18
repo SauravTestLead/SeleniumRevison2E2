@@ -1,0 +1,31 @@
+
+name: Selenium Automation CI-CD
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  selenium-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Build Selenium Project
+        run: mvn clean compile
+
+      - name: Execute Test Cases
+        run: mvn test
