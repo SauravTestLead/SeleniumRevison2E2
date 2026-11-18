@@ -1,4 +1,4 @@
 package Selenium_Saurav.com;
 
-public class MethodCheck {
+public class ScrollUpandDown {
 }

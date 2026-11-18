@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Discover travel inspiration, interactive tools, and destination ideas with Saurav Lab.">
+    <title>Website | Saurav Lab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/DropDown.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark site-navbar">
+    <div class="container">
+        <a class="navbar-brand brand-lockup fw-bold" href="#home" aria-label="Website by Saurav Lab, home">
+            <svg class="brand-mark" viewBox="0 0 44 44" role="img" aria-labelledby="brand-mark-title">
+                <title id="brand-mark-title">Saurav Lab logo</title>
+                <path d="M22 3.5 39.5 13.6v16.8L22 40.5 4.5 30.4V13.6L22 3.5Z" fill="currentColor"/>
+                <path d="m12 25 6.1-9 4.1 6 3.1-4.4L32 29H12l4.3-6.2"
+                      fill="none" stroke="#14283a" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+                <circle cx="29.5" cy="14.5" r="2" fill="#14283a"/>
+            </svg>
+            <span class="brand-name">Website <span class="brand-divider">|</span> <span class="brand-lab">Saurav Lab</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNavigation" aria-controls="mainNavigation"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavigation">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                <li class="nav-item"><a class="nav-link" href="#static">Static select</a></li>
+                <li class="nav-item"><a class="nav-link" href="#custom">Custom menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#dynamic">Dynamic select</a></li>
+                <li class="nav-item"><a class="nav-link" href="#inspiration">Inspiration</a></li>
+                <li class="nav-item"><a class="nav-link" href="#multiple-tabs">Explore</a></li>
+                <li class="nav-item"><a class="nav-link" href="#account">Account</a></li>
+                <li class="nav-item" id="report-nav-item" hidden>
+                    <a class="nav-link" href="#registration-report">Registration report</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="hero" id="home">
+    <div class="container hero-content">
+        <p class="eyebrow">A LITTLE INSPIRATION GOES A LONG WAY</p>
+        <h1>Find your next<br>great experience.</h1>
+        <p class="hero-copy">Discover new ideas, explore destinations, and make your next visit feel a little more memorable.</p>
+        <form class="destination-search" role="search" autocomplete="off">
+            <label class="visually-hidden" for="destination-search">Search products, destinations, countries, and languages</label>
+            <div class="destination-search-box">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                    <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                    <path d="m16 16 5 5"></path>
+                </svg>
+                <input id="destination-search" type="search" placeholder="Search products, places, countries, or languages"
+                       role="combobox" aria-autocomplete="list" aria-haspopup="listbox"
+                       aria-expanded="false" aria-controls="destination-suggestions">
+            </div>
+            <ul class="destination-suggestions" id="destination-suggestions"
+                role="listbox" aria-label="Suggested destinations" hidden></ul>
+            <p class="destination-search-status" id="destination-search-status"
+               role="status" aria-live="polite"></p>
+        </form>
+        <a class="btn btn-light hero-button" href="#inspiration">Get inspired <span aria-hidden="true">↓</span></a>
+    </div>
+</header>
+
+<section class="video-section container" id="inspiration" aria-labelledby="inspiration-heading">
+    <div class="video-copy">
+        <p class="eyebrow">A MOMENT OF INSPIRATION</p>
+        <h2 id="inspiration-heading">Take the scenic route.</h2>
+        <p>Pause for a little inspiration before you explore the rest of the site.</p>
+        <a class="video-link" href="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+           target="_blank" rel="noopener noreferrer">
+            Watch this video on YouTube <span aria-hidden="true">↗</span>
+        </a>
+    </div>
+    <div class="video-frame">
+        <iframe
+            src="https://www.youtube-nocookie.com/embed/ysz5S6PUM-U"
+            title="Travel and nature video inspiration"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+    </div>
+</section>
+
+<main class="container examples" id="examples">
+    <div class="section-heading">
+        <p class="eyebrow">INTERACTIVE COMPONENTS</p>
+        <h2>Choose a dropdown</h2>
+        <p>Each example demonstrates a different dropdown pattern.</p>
+    </div>
+
+    <div class="row g-4">
+        <section class="col-12 col-lg-4" id="static">
+            <article class="example-card h-100">
+                <div class="card-icon" aria-hidden="true">01</div>
+                <h3>Static dropdown</h3>
+                <p class="card-description">A standard HTML <code>&lt;select&gt;</code> with fixed options.</p>
+                <label class="form-label" for="language">Choose a language</label>
+                <select class="form-select" id="language">
+                    <option value="" selected disabled>Select a language</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Python">Python</option>
+                    <option value="C#">C#</option>
+                </select>
+                <p class="result-message" id="language-result" role="status" aria-live="polite">
+                    Make a selection to see the result.
+                </p>
+            </article>
+        </section>
+
+        <section class="col-12 col-lg-4" id="custom">
+            <article class="example-card h-100">
+                <div class="card-icon" aria-hidden="true">02</div>
+                <h3>Custom dropdown</h3>
+                <p class="card-description">A Bootstrap menu built with buttons, not a select element.</p>
+                <span class="form-label d-block" id="experience-label">Choose an experience</span>
+                <div class="dropdown">
+                    <button class="btn custom-dropdown-toggle dropdown-toggle" type="button"
+                            id="experience-menu" data-bs-toggle="dropdown" aria-expanded="false"
+                            aria-labelledby="experience-label">
+                        Select an experience
+                    </button>
+                    <ul class="dropdown-menu w-100" aria-labelledby="experience-menu">
+                        <li><button class="dropdown-item" type="button" data-choice="City break">City break</button></li>
+                        <li><button class="dropdown-item" type="button" data-choice="Nature escape">Nature escape</button></li>
+                        <li><button class="dropdown-item" type="button" data-choice="Food tour">Food tour</button></li>
+                        <li><button class="dropdown-item" type="button" data-choice="Beach holiday">Beach holiday</button></li>
+                    </ul>
+                </div>
+                <p class="result-message" id="experience-result" role="status" aria-live="polite">
+                    Choose an item from the menu.
+                </p>
+            </article>
+        </section>
+
+        <section class="col-12 col-lg-4" id="dynamic">
+            <article class="example-card h-100">
+                <div class="card-icon" aria-hidden="true">03</div>
+                <h3>Dynamic dropdown</h3>
+                <p class="card-description">Choose a country to load its cities into the next dropdown.</p>
+                <label class="form-label" for="country">Country</label>
+                <select class="form-select mb-3" id="country">
+                    <option value="" selected>Choose a country</option>
+                    <option value="india">India</option>
+                    <option value="japan">Japan</option>
+                    <option value="canada">Canada</option>
+                </select>
+                <label class="form-label" for="city">City</label>
+                <select class="form-select" id="city" disabled>
+                    <option value="">Choose a country first</option>
+                </select>
+                <p class="result-message" id="city-result" role="status" aria-live="polite">
+                    Select a country to see its cities.
+                </p>
+            </article>
+        </section>
+    </div>
+
+    <section class="browser-actions-section" id="browser-actions" aria-labelledby="browser-actions-heading">
+        <div class="section-heading">
+            <p class="eyebrow">MORE TO TRY</p>
+            <h2 id="browser-actions-heading">Browser actions</h2>
+            <p>Try a page navigation, a mouse hover, and a document drop zone.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-12 col-md-4">
+                <article class="action-card h-100">
+                    <div class="card-icon" aria-hidden="true">04</div>
+                    <h3>Page navigation</h3>
+                    <p>Open the sample table page or try the intentional broken link below.</p>
+                    <a class="btn action-button w-100" href="SauravNextPage.html">Open the next page</a>
+                    <a class="btn action-button w-100 mt-2" href="SauravMissingPage.html">Test broken link</a>
+                </article>
+            </div>
+            <div class="col-12 col-md-4">
+                <article class="action-card h-100">
+                    <div class="card-icon" aria-hidden="true">05</div>
+                    <h3>Mouse hover</h3>
+                    <p>Move your pointer over the button to trigger the hover action.</p>
+                    <button class="btn action-button w-100 hover-demo-button" id="hover-demo"
+                            type="button">Hover over me</button>
+                    <p class="result-message" id="hover-result" role="status" aria-live="polite">
+                        The hover action will appear here.
+                    </p>
+                </article>
+            </div>
+            <div class="col-12 col-md-4">
+                <article class="action-card h-100">
+                    <div class="card-icon" aria-hidden="true">06</div>
+                    <h3>Drop a document</h3>
+                    <p>Drop a PDF or Office document here, or browse to choose a file.</p>
+                    <label class="file-drop-zone" id="file-drop-zone" for="document-upload">
+                        <span class="drop-icon" aria-hidden="true">⇧</span>
+                        <span class="drop-prompt">Drag and drop a file</span>
+                        <span class="drop-hint">PDF, Word, Excel, or PowerPoint</span>
+                        <span class="btn action-button browse-button">Browse files</span>
+                        <input id="document-upload" type="file"
+                               accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                               aria-label="Choose a PDF or Microsoft Office document">
+                    </label>
+                    <p class="result-message" id="upload-result" role="status" aria-live="polite">
+                        Files stay on this device; nothing is uploaded.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="multiple-tabs-section" id="multiple-tabs" aria-labelledby="multiple-tabs-heading">
+        <div class="multiple-tabs-heading">
+            <div>
+                <p class="eyebrow">BROWSER WINDOW PRACTICE</p>
+                <h2 id="multiple-tabs-heading">Multiple Windows / Tab Actions</h2>
+                <p>Select an action to open a website in a new tab, then switch between the open browser tabs.</p>
+            </div>
+            <a class="btn back-button" href="#examples"><span aria-hidden="true">←</span> Back to examples</a>
+        </div>
+        <div class="row g-3">
+            <div class="col-12 col-md-4">
+                <a class="website-link youtube-link" href="https://www.youtube.com/"
+                   target="_blank" rel="noopener noreferrer">
+                    <span class="website-icon" aria-hidden="true">▶</span>
+                    <span><strong>YouTube</strong><small>Open in a new tab</small></span>
+                    <span class="open-icon" aria-hidden="true">↗</span>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a class="website-link facebook-link" href="https://www.facebook.com/"
+                   target="_blank" rel="noopener noreferrer">
+                    <span class="website-icon" aria-hidden="true">f</span>
+                    <span><strong>Facebook</strong><small>Open in a new tab</small></span>
+                    <span class="open-icon" aria-hidden="true">↗</span>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a class="website-link makemytrip-link" href="https://www.makemytrip.com/"
+                   target="_blank" rel="noopener noreferrer">
+                    <span class="website-icon" aria-hidden="true">✈</span>
+                    <span><strong>MakeMyTrip</strong><small>Open in a new tab</small></span>
+                    <span class="open-icon" aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="account-section" id="account" aria-labelledby="account-heading">
+        <div class="section-heading">
+            <p class="eyebrow">GET STARTED</p>
+            <h2 id="account-heading">Your account</h2>
+            <p>Choose an option to open its secure-looking demo form.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <article class="account-launch-card h-100">
+                    <div class="login-icon" aria-hidden="true">+</div>
+                    <h3>Create an account</h3>
+                    <p>Register with your details using our sample sign-up form.</p>
+                    <button class="btn account-submit w-100" type="button" data-bs-toggle="modal"
+                            data-bs-target="#registration-modal">Register</button>
+                </article>
+            </div>
+            <div class="col-12 col-md-6">
+                <article class="account-launch-card h-100">
+                    <div class="login-icon" aria-hidden="true">↗</div>
+                    <h3>Welcome back</h3>
+                    <p>Already have an account? Open the sign-in form to continue.</p>
+                    <button class="btn account-submit w-100" type="button" data-bs-toggle="modal"
+                            data-bs-target="#login-modal">Log in</button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="registration-report" id="registration-report" aria-labelledby="report-heading" hidden>
+        <div class="report-heading">
+            <div>
+                <p class="eyebrow">YOUR SUBMITTED DATA</p>
+                <h2 id="report-heading" tabindex="-1">Registration report</h2>
+                <p id="report-summary">Your registration details will appear here after submission.</p>
+            </div>
+            <div class="report-actions">
+                <button class="btn account-submit" id="download-report" type="button">Download CSV for Excel</button>
+                <button class="btn report-pdf" id="print-report" type="button">Print / Save as PDF</button>
+                <button class="btn report-clear" id="clear-report" type="button">Clear report</button>
+            </div>
+        </div>
+        <div class="table-responsive report-table-wrap">
+            <table class="table table-hover align-middle">
+                <caption class="visually-hidden">Registration details submitted in this browser session</caption>
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Date of birth</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Interests</th>
+                    <th scope="col">Submitted</th>
+                </tr>
+                </thead>
+                <tbody id="report-rows"></tbody>
+            </table>
+        </div>
+        <p class="report-privacy-note">This demo does not register accounts or save data. Report entries stay in page memory until refresh or cleared. Passwords are never shown or exported.</p>
+    </section>
+
+    <div class="modal fade account-modal" id="registration-modal" tabindex="-1"
+         aria-labelledby="registration-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <p class="eyebrow mb-1">JOIN US</p>
+                        <h2 class="modal-title fs-4" id="registration-modal-title">Create an account</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="account-description">This demo does not create an account. Submitted details are used only for the report on this page.</p>
+                    <form id="registration-form">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="first-name">First name</label>
+                                <input class="form-control" id="first-name" name="firstName"
+                                       type="text" autocomplete="given-name" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="last-name">Last name</label>
+                                <input class="form-control" id="last-name" name="lastName"
+                                       type="text" autocomplete="family-name" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="register-email">Email address</label>
+                                <input class="form-control" id="register-email" name="email"
+                                       type="email" autocomplete="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="phone">Phone number</label>
+                                <div class="input-group phone-input">
+                                    <label class="visually-hidden" for="phone-country-code">Country calling code</label>
+                                    <select class="form-select phone-code" id="phone-country-code" name="phoneCountryCode"
+                                            autocomplete="tel-country-code" aria-label="Country calling code">
+                                        <option value="+1">US/Canada +1</option>
+                                        <option value="+44">UK +44</option>
+                                        <option value="+61">Australia +61</option>
+                                        <option value="+91" selected>India +91</option>
+                                        <option value="+81">Japan +81</option>
+                                        <option value="+49">Germany +49</option>
+                                    </select>
+                                    <input class="form-control" id="phone" name="phone" type="tel"
+                                           autocomplete="tel-national" placeholder="555 123 4567">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="birth-date">Date of birth</label>
+                                <input class="form-control" id="birth-date" name="birthDate"
+                                       type="date" autocomplete="bday">
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="register-password">Password</label>
+                                <input class="form-control" id="register-password" name="password"
+                                       type="password" autocomplete="new-password" minlength="8"
+                                       aria-describedby="password-hint" required>
+                                <div class="form-text" id="password-hint">Use at least 8 characters.</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="confirm-password">Confirm password</label>
+                                <input class="form-control" id="confirm-password" name="confirmPassword"
+                                       type="password" autocomplete="new-password" minlength="8" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="register-country">Country</label>
+                                <select class="form-select" id="register-country" name="country" required>
+                                    <option value="" selected disabled>Choose your country</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="India">India</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="United States">United States</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <fieldset class="gender-options">
+                                    <legend class="form-label">Gender <span class="optional-label">(optional)</span></legend>
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="gender-woman" name="gender"
+                                                   type="radio" value="woman">
+                                            <label class="form-check-label" for="gender-woman">Woman</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="gender-man" name="gender"
+                                                   type="radio" value="man">
+                                            <label class="form-check-label" for="gender-man">Man</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="gender-nonbinary" name="gender"
+                                                   type="radio" value="nonbinary">
+                                            <label class="form-check-label" for="gender-nonbinary">Non-binary</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" id="gender-no-answer" name="gender"
+                                                   type="radio" value="prefer-not-to-say">
+                                            <label class="form-check-label" for="gender-no-answer">Prefer not to say</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-12">
+                                <fieldset class="interest-options">
+                                    <legend class="form-label">What are you interested in? <span class="optional-label">(select any)</span></legend>
+                                    <div class="row g-2">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="interest-destinations"
+                                                       name="interests" type="checkbox" value="Destination ideas">
+                                                <label class="form-check-label" for="interest-destinations">Destination ideas</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="interest-travel-tips"
+                                                       name="interests" type="checkbox" value="Travel tips">
+                                                <label class="form-check-label" for="interest-travel-tips">Travel tips</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="interest-deals"
+                                                       name="interests" type="checkbox" value="Travel deals">
+                                                <label class="form-check-label" for="interest-deals">Travel deals</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" id="interest-events"
+                                                       name="interests" type="checkbox" value="Local events">
+                                                <label class="form-check-label" for="interest-events">Local events</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" id="terms" name="terms"
+                                           type="checkbox" required>
+                                    <label class="form-check-label" for="terms">
+                                        I agree to the terms and privacy policy.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn account-submit w-100" type="submit">Add details to report</button>
+                                <p class="form-feedback" id="registration-feedback" role="status" aria-live="polite"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade account-modal" id="login-modal" tabindex="-1"
+         aria-labelledby="login-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <p class="eyebrow mb-1">WELCOME BACK</p>
+                        <h2 class="modal-title fs-4" id="login-modal-title">Log in</h2>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="account-description">Sign in with your email and password.</p>
+                    <form id="login-form">
+                        <div class="mb-3">
+                            <label class="form-label" for="login-email">Email address</label>
+                            <input class="form-control" id="login-email" name="email" type="email"
+                                   autocomplete="username" placeholder="you@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="login-password">Password</label>
+                            <input class="form-control" id="login-password" name="password"
+                                   type="password" autocomplete="current-password" required>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" id="remember-me" name="remember"
+                                   type="checkbox">
+                            <label class="form-check-label" for="remember-me">Remember me</label>
+                        </div>
+                        <button class="btn account-submit w-100" type="submit">Log in</button>
+                        <p class="form-feedback" id="login-feedback" role="status" aria-live="polite"></p>
+                    </form>
+                    <div class="login-divider"><span>OR</span></div>
+                    <a class="gmail-link" href="https://mail.google.com/" target="_blank"
+                       rel="noopener noreferrer">Open Gmail <span aria-hidden="true">↗</span></a>
+                    <p class="demo-note">Demo only: forms do not create accounts or authenticate users.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container">Website | Saurav Test Lab <span aria-hidden="true">·</span> Built with HTML5 and Bootstrap 5</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const heroBackgrounds = [
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=85",
+        "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2200&q=85",
+        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=2200&q=85",
+        "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=2200&q=85"
+    ];
+    const backgroundKey = "saurav-lab-hero-background";
+    let backgroundIndex = sessionStorage.getItem(backgroundKey);
+    const savedBackgroundIndex = Number(backgroundIndex);
+
+    if (backgroundIndex === null
+        || !Number.isInteger(savedBackgroundIndex)
+        || savedBackgroundIndex < 0
+        || savedBackgroundIndex >= heroBackgrounds.length) {
+        const randomValues = new Uint32Array(1);
+        crypto.getRandomValues(randomValues);
+        backgroundIndex = String(randomValues[0] % heroBackgrounds.length);
+        sessionStorage.setItem(backgroundKey, backgroundIndex);
+    }
+
+    document.querySelector(".hero").style.setProperty(
+        "--hero-image",
+        `url("${heroBackgrounds[Number(backgroundIndex)]}")`
+    );
+
+    const searchSuggestions = [
+        { label: "Bali, Indonesia", category: "Destination" },
+        { label: "Banff, Canada", category: "Destination" },
+        { label: "Cape Town, South Africa", category: "Destination" },
+        { label: "iPhone 17 Pro", category: "Product" },
+        { label: "iPhone 17", category: "Product" },
+        { label: "Kyoto, Japan", category: "Destination" },
+        { label: "English", category: "Language" },
+        { label: "Hindi", category: "Language" },
+        { label: "London, United Kingdom", category: "Destination" },
+        { label: "New York, United States", category: "Destination" },
+        { label: "Paris, France", category: "Destination" },
+        { label: "Queenstown, New Zealand", category: "Destination" },
+        { label: "Reykjavik, Iceland", category: "Destination" },
+        { label: "Rome, Italy", category: "Destination" },
+        { label: "Santorini, Greece", category: "Destination" },
+        { label: "Smart TV", category: "Product" },
+        { label: "Samsung TV", category: "Product" },
+        { label: "Tokyo, Japan", category: "Destination" },
+        { label: "United States", category: "Country" },
+        { label: "United Kingdom", category: "Country" },
+        { label: "India", category: "Country" },
+        { label: "Canada", category: "Country" },
+        { label: "Japan", category: "Country" }
+    ];
+    const destinationInput = document.querySelector("#destination-search");
+    const suggestionList = document.querySelector("#destination-suggestions");
+    const searchStatus = document.querySelector("#destination-search-status");
+    let activeSuggestion = -1;
+
+    function closeSuggestions() {
+        suggestionList.hidden = true;
+        destinationInput.setAttribute("aria-expanded", "false");
+        destinationInput.removeAttribute("aria-activedescendant");
+        activeSuggestion = -1;
+    }
+
+    function selectDestination(destination) {
+        destinationInput.value = destination;
+        searchStatus.textContent = "Selected destination: " + destination + ".";
+        closeSuggestions();
+    }
+
+    function updateSuggestions() {
+        const query = destinationInput.value.trim().toLocaleLowerCase();
+        suggestionList.replaceChildren();
+        activeSuggestion = -1;
+
+        if (!query) {
+            closeSuggestions();
+            searchStatus.textContent = "";
+            return;
+        }
+
+        const matches = searchSuggestions.filter((suggestion) =>
+            suggestion.label.toLocaleLowerCase().includes(query)
+        );
+
+        if (matches.length === 0) {
+            closeSuggestions();
+            searchStatus.textContent = "No matching destinations found.";
+            return;
+        }
+
+        matches.forEach((suggestion, index) => {
+            const option = document.createElement("li");
+            option.id = "destination-option-" + index;
+            option.setAttribute("role", "option");
+            option.setAttribute("aria-selected", "false");
+            option.dataset.value = suggestion.label;
+            const label = document.createElement("span");
+            label.textContent = suggestion.label;
+            const category = document.createElement("small");
+            category.className = "suggestion-category";
+            category.textContent = suggestion.category;
+            option.append(label, category);
+            option.addEventListener("mousedown", (event) => event.preventDefault());
+            option.addEventListener("click", () => selectDestination(suggestion.label));
+            suggestionList.append(option);
+        });
+
+        suggestionList.hidden = false;
+        destinationInput.setAttribute("aria-expanded", "true");
+        searchStatus.textContent = matches.length + " destination"
+            + (matches.length === 1 ? "" : "s") + " found.";
+    }
+
+    function activateSuggestion(index) {
+        const options = suggestionList.querySelectorAll('[role="option"]');
+        if (options.length === 0) return;
+
+        activeSuggestion = (index + options.length) % options.length;
+        options.forEach((option, optionIndex) => {
+            const isActive = optionIndex === activeSuggestion;
+            option.setAttribute("aria-selected", String(isActive));
+            if (isActive) {
+                destinationInput.setAttribute("aria-activedescendant", option.id);
+                option.scrollIntoView({ block: "nearest" });
+            }
+        });
+    }
+
+    destinationInput.addEventListener("input", updateSuggestions);
+    destinationInput.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowDown" && !suggestionList.hidden) {
+            event.preventDefault();
+            activateSuggestion(activeSuggestion + 1);
+        } else if (event.key === "ArrowUp" && !suggestionList.hidden) {
+            event.preventDefault();
+            activateSuggestion(activeSuggestion < 0
+                ? suggestionList.children.length - 1
+                : activeSuggestion - 1);
+        } else if (event.key === "Enter" && !suggestionList.hidden) {
+            event.preventDefault();
+            const option = suggestionList.children[
+                activeSuggestion < 0 ? 0 : activeSuggestion
+            ];
+            if (option) selectDestination(option.dataset.value);
+        } else if (event.key === "Escape") {
+            closeSuggestions();
+        }
+    });
+    destinationInput.addEventListener("blur", () => {
+        window.setTimeout(closeSuggestions, 120);
+    });
+
+    const languageSelect = document.querySelector("#language");
+    const languageResult = document.querySelector("#language-result");
+    languageSelect.addEventListener("change", () => {
+        languageResult.textContent = "You selected " + languageSelect.value + ".";
+    });
+
+    const experienceButton = document.querySelector("#experience-menu");
+    const experienceResult = document.querySelector("#experience-result");
+    document.querySelectorAll("[data-choice]").forEach((option) => {
+        option.addEventListener("click", () => {
+            experienceButton.textContent = option.dataset.choice;
+            experienceResult.textContent = "You selected " + option.dataset.choice + ".";
+        });
+    });
+
+    const citiesByCountry = {
+        india: ["Bengaluru", "Delhi", "Mumbai"],
+        japan: ["Kyoto", "Osaka", "Tokyo"],
+        canada: ["Montreal", "Toronto", "Vancouver"]
+    };
+    const countrySelect = document.querySelector("#country");
+    const citySelect = document.querySelector("#city");
+    const cityResult = document.querySelector("#city-result");
+
+    countrySelect.addEventListener("change", () => {
+        const cities = citiesByCountry[countrySelect.value] || [];
+        citySelect.replaceChildren(new Option(
+            cities.length ? "Choose a city" : "Choose a country first",
+            ""
+        ));
+        cities.forEach((city) => citySelect.add(new Option(city, city)));
+        citySelect.disabled = cities.length === 0;
+        cityResult.textContent = cities.length
+            ? "Now choose a city."
+            : "Select a country to see its cities.";
+    });
+
+    citySelect.addEventListener("change", () => {
+        cityResult.textContent = citySelect.value
+            ? "You selected " + citySelect.value + "."
+            : "Now choose a city.";
+    });
+
+    const hoverDemo = document.querySelector("#hover-demo");
+    const hoverResult = document.querySelector("#hover-result");
+    hoverDemo.addEventListener("mouseenter", () => {
+        hoverResult.textContent = "Mouse hover action triggered.";
+    });
+    hoverDemo.addEventListener("mouseleave", () => {
+        hoverResult.textContent = "Move your pointer over the button to try again.";
+    });
+    hoverDemo.addEventListener("focus", () => {
+        hoverResult.textContent = "Button focused. Hover it or press Enter to try the action.";
+    });
+    hoverDemo.addEventListener("click", () => {
+        hoverResult.textContent = "Button action triggered.";
+    });
+
+    const documentUpload = document.querySelector("#document-upload");
+    const fileDropZone = document.querySelector("#file-drop-zone");
+    const uploadResult = document.querySelector("#upload-result");
+    const allowedExtensions = new Set(["pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]);
+
+    function showSelectedFiles(fileList) {
+        const files = Array.from(fileList);
+        if (files.length === 0) return;
+
+        const invalidFiles = files.filter((file) => {
+            const extension = file.name.split(".").pop()?.toLowerCase();
+            return !extension || !allowedExtensions.has(extension);
+        });
+
+        if (invalidFiles.length > 0) {
+            uploadResult.textContent = "Unsupported file type: "
+                + invalidFiles.map((file) => file.name).join(", ")
+                + ". Choose PDF, Word, Excel, or PowerPoint files.";
+            return;
+        }
+
+        uploadResult.textContent = "Selected: "
+            + files.map((file) => `${file.name} (${formatFileSize(file.size)})`).join(", ")
+            + ". Files were not uploaded.";
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes < 1024) return `${bytes} B`;
+        if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+        return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    documentUpload.addEventListener("change", () => showSelectedFiles(documentUpload.files));
+    fileDropZone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        fileDropZone.classList.add("is-dragging");
+    });
+    fileDropZone.addEventListener("dragleave", (event) => {
+        if (!fileDropZone.contains(event.relatedTarget)) {
+            fileDropZone.classList.remove("is-dragging");
+        }
+    });
+    fileDropZone.addEventListener("drop", (event) => {
+        event.preventDefault();
+        fileDropZone.classList.remove("is-dragging");
+        showSelectedFiles(event.dataTransfer.files);
+    });
+
+    const registrationForm = document.querySelector("#registration-form");
+    const registrationFeedback = document.querySelector("#registration-feedback");
+    const registerPassword = document.querySelector("#register-password");
+    const confirmPassword = document.querySelector("#confirm-password");
+    const registrationModal = document.querySelector("#registration-modal");
+    const reportSection = document.querySelector("#registration-report");
+    const reportRows = document.querySelector("#report-rows");
+    const reportSummary = document.querySelector("#report-summary");
+    const reportNavItem = document.querySelector("#report-nav-item");
+    const registrations = [];
+    let scrollToReportAfterClose = false;
+
+    registrationForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (registerPassword.value !== confirmPassword.value) {
+            confirmPassword.setCustomValidity("Passwords do not match.");
+            confirmPassword.reportValidity();
+            registrationFeedback.textContent = "Please make sure both passwords match.";
+            return;
+        }
+
+        confirmPassword.setCustomValidity("");
+        const formData = new FormData(registrationForm);
+        registrations.push({
+            name: [formData.get("firstName"), formData.get("lastName")].join(" ").trim(),
+            email: formData.get("email"),
+            phone: formData.get("phone")
+                ? `${formData.get("phoneCountryCode")} ${formData.get("phone")}`
+                : "Not provided",
+            birthDate: formData.get("birthDate") || "Not provided",
+            country: formData.get("country"),
+            gender: formData.get("gender") || "Not specified",
+            interests: formData.getAll("interests").join(", ") || "None selected",
+            submittedAt: new Date().toLocaleString()
+        });
+        registrationForm.reset();
+        confirmPassword.setCustomValidity("");
+
+        renderRegistrationReport();
+        reportSection.hidden = false;
+        reportNavItem.hidden = false;
+        registrationFeedback.textContent = "Registration added to the report.";
+        scrollToReportAfterClose = true;
+        bootstrap.Modal.getOrCreateInstance(registrationModal).hide();
+    });
+
+    confirmPassword.addEventListener("input", () => confirmPassword.setCustomValidity(""));
+
+    registrationModal.addEventListener("hidden.bs.modal", () => {
+        if (scrollToReportAfterClose) {
+            scrollToReportAfterClose = false;
+            reportSection.scrollIntoView({ behavior: "smooth", block: "start" });
+            document.querySelector("#report-heading").focus({ preventScroll: true });
+        }
+    });
+
+    function renderRegistrationReport() {
+        reportRows.replaceChildren();
+
+        registrations.forEach((registration) => {
+            const row = document.createElement("tr");
+            Object.values(registration).forEach((value) => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.append(cell);
+            });
+            reportRows.append(row);
+        });
+
+        reportSummary.textContent =
+            `${registrations.length} registration${registrations.length === 1 ? "" : "s"} in this browser session.`;
+    }
+
+    document.querySelector("#download-report").addEventListener("click", () => {
+        const columns = [
+            ["Name", "name"],
+            ["Email", "email"],
+            ["Phone", "phone"],
+            ["Date of birth", "birthDate"],
+            ["Country", "country"],
+            ["Gender", "gender"],
+            ["Interests", "interests"],
+            ["Submitted", "submittedAt"]
+        ];
+        const csvCell = (value) => {
+            const text = String(value ?? "");
+            const safeText = /^[\t\r ]*[=+\-@]/.test(text) ? "'" + text : text;
+            return '"' + safeText.replaceAll('"', '""') + '"';
+        };
+        const csvRows = [
+            columns.map(([heading]) => csvCell(heading)).join(","),
+            ...registrations.map((registration) =>
+                columns.map(([, key]) => csvCell(registration[key])).join(",")
+            )
+        ];
+        const file = new Blob(["\uFEFF", csvRows.join("\r\n")], {
+            type: "text/csv;charset=utf-8"
+        });
+        const downloadUrl = URL.createObjectURL(file);
+        const downloadLink = document.createElement("a");
+        downloadLink.href = downloadUrl;
+        downloadLink.download = "registration-report.csv";
+        downloadLink.click();
+        window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+    });
+
+    document.querySelector("#print-report").addEventListener("click", () => {
+        window.print();
+    });
+
+    document.querySelector("#clear-report").addEventListener("click", () => {
+        registrations.length = 0;
+        reportRows.replaceChildren();
+        reportSection.hidden = true;
+        reportNavItem.hidden = true;
+    });
+
+    document.querySelector("#login-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        document.querySelector("#login-feedback").textContent =
+            "Login is a demo only; authentication is not configured.";
+    });
+</script>
+</body>
+</html>
