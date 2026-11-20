@@ -32,42 +32,47 @@
     <div class="section-heading">
         <p class="eyebrow">NEXT PAGE</p>
         <h1>Sample table</h1>
-        <p>This page demonstrates a table with headings, rows, and data cells.</p>
+        <p>Add rows dynamically, remove selected rows, or load a CSV/TSV file.</p>
     </div>
 
+    <form class="row g-3 align-items-end mb-4" id="add-table-row-form">
+        <div class="row g-3" id="new-row-fields"></div>
+        <div class="col-12">
+            <button class="btn action-button w-100" type="submit">Add</button>
+        </div>
+    </form>
+
+    <div class="d-flex flex-wrap gap-2 mb-3" role="group" aria-label="Table actions">
+        <button class="btn action-button" id="add-sample-rows" type="button">Add sample rows</button>
+        <button class="btn btn-outline-danger" id="delete-selected-row" type="button">Delete selected rows</button>
+        <button class="btn btn-outline-secondary" id="clear-table-rows" type="button">Remove all table rows</button>
+    </div>
+    <p class="result-message mt-0" id="table-status" role="status" aria-live="polite">
+        Check one or more rows to delete them.
+    </p>
     <div class="table-responsive report-table-wrap">
-        <table class="table table-hover align-middle">
-            <caption class="visually-hidden">Sample destination details</caption>
-            <thead>
-            <tr>
-                <th scope="col">Destination</th>
-                <th scope="col">Country</th>
-                <th scope="col">Best season</th>
-                <th scope="col">Category</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Kyoto</td>
-                <td>Japan</td>
-                <td>Spring</td>
-                <td>Culture</td>
-            </tr>
-            <tr>
-                <td>Banff</td>
-                <td>Canada</td>
-                <td>Summer</td>
-                <td>Nature</td>
-            </tr>
-            <tr>
-                <td>Bali</td>
-                <td>Indonesia</td>
-                <td>May to September</td>
-                <td>Island</td>
-            </tr>
-            </tbody>
+        <table class="table table-hover align-middle" id="destination-table">
+            <caption class="visually-hidden">Destination data. Check rows to enable deleting them.</caption>
+            <thead></thead>
+            <tbody></tbody>
         </table>
     </div>
+
+    <section class="mt-4" aria-labelledby="table-drop-heading">
+        <h2 class="h4" id="table-drop-heading">Build a table from a data file</h2>
+        <p>Drop a CSV or TSV file below. Its first row will be used as the table headings.</p>
+        <label class="file-drop-zone" id="table-drop-zone" for="table-data-file" tabindex="0">
+            <span class="drop-icon" aria-hidden="true">⇧</span>
+            <span class="drop-prompt">Drag and drop a CSV or TSV file</span>
+            <span class="drop-hint">The file is read locally and replaces the current table data.</span>
+            <span class="btn action-button browse-button">Browse files</span>
+            <input id="table-data-file" type="file" accept=".csv,.tsv,text/csv,text/tab-separated-values"
+                   aria-label="Choose a CSV or TSV data file">
+        </label>
+        <p class="result-message" id="table-file-status" role="status" aria-live="polite">
+            No data file selected.
+        </p>
+    </section>
 
     <a class="btn action-button mt-4" href="SauravWebsite.html">
         <span aria-hidden="true">←</span> Back to main website
@@ -78,5 +83,237 @@
     <div class="container">Website | Saurav Test Lab <span aria-hidden="true">·</span> Built with HTML5 and Bootstrap 5</div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const tableHeaders = ["Destination", "Country", "Best season", "Category"];
+    const tableRows = [
+        ["Kyoto", "Japan", "Spring", "Culture"],
+        ["Banff", "Canada", "Summer", "Nature"],
+        ["Bali", "Indonesia", "May to September", "Island"]
+    ];
+    const destinationTable = document.querySelector("#destination-table");
+    const tableStatus = document.querySelector("#table-status");
+    const selectedRows = new Set();
+    const newRowFields = document.querySelector("#new-row-fields");
+
+    function renderAddRowFields() {
+        newRowFields.replaceChildren();
+        tableHeaders.forEach((heading, index) => {
+            const column = document.createElement("div");
+            column.className = "col-12 col-sm-6 col-lg-3";
+            const label = document.createElement("label");
+            label.className = "form-label";
+            label.htmlFor = `new-row-value-${index}`;
+            label.textContent = heading;
+            const input = document.createElement("input");
+            input.className = "form-control";
+            input.id = `new-row-value-${index}`;
+            input.name = `column-${index}`;
+            input.required = true;
+            column.append(label, input);
+            newRowFields.append(column);
+        });
+    }
+
+    document.querySelector("#add-table-row-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        tableRows.push(tableHeaders.map((_, index) =>
+            String(formData.get(`column-${index}`)).trim()
+        ));
+        event.currentTarget.reset();
+        renderTable();
+        tableStatus.textContent = "New row added.";
+    });
+
+    function renderTable() {
+        const tableHead = destinationTable.querySelector("thead");
+        const tableBody = destinationTable.querySelector("tbody");
+        const headingRow = document.createElement("tr");
+        const selectHeading = document.createElement("th");
+        selectHeading.scope = "col";
+        selectHeading.textContent = "Select";
+        headingRow.append(selectHeading);
+
+        tableHeaders.forEach((heading) => {
+            const cell = document.createElement("th");
+            cell.scope = "col";
+            cell.textContent = heading;
+            headingRow.append(cell);
+        });
+        tableHead.replaceChildren(headingRow);
+
+        const rows = tableRows.map((values, rowIndex) => {
+            const row = document.createElement("tr");
+            const selectCell = document.createElement("td");
+            const radio = document.createElement("input");
+            radio.type = "checkbox";
+            radio.value = String(rowIndex);
+            radio.setAttribute("aria-label", `Select row ${rowIndex + 1} to delete`);
+            radio.checked = selectedRows.has(rowIndex);
+            radio.addEventListener("change", () => {
+                if (radio.checked) selectedRows.add(rowIndex);
+                else selectedRows.delete(rowIndex);
+                tableStatus.textContent = selectedRows.size
+                    ? `${selectedRows.size} row${selectedRows.size === 1 ? "" : "s"} selected.`
+                    : "No rows selected.";
+            });
+            selectCell.append(radio);
+            row.append(selectCell);
+
+            values.forEach((value) => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                row.append(cell);
+            });
+            return row;
+        });
+        tableBody.replaceChildren(...rows);
+    }
+
+    document.querySelector("#add-sample-rows").addEventListener("click", () => {
+        const samples = [
+            ["Reykjavik", "Iceland", "Summer", "City"],
+            ["Machu Picchu", "Peru", "May to September", "History"],
+            ["Queenstown", "New Zealand", "December to February", "Adventure"]
+        ].map((sample, sampleIndex) => tableHeaders.map((heading, columnIndex) => {
+            const knownColumn = ["destination", "country", "best season", "category"]
+                .indexOf(heading.trim().toLowerCase());
+            return knownColumn >= 0
+                ? sample[knownColumn]
+                : sample[columnIndex] ?? `Sample ${sampleIndex + 1}`;
+        }));
+        tableRows.push(...samples);
+        renderTable();
+        tableStatus.textContent = "Three sample rows added.";
+    });
+
+    document.querySelector("#delete-selected-row").addEventListener("click", () => {
+        if (selectedRows.size === 0) {
+            tableStatus.textContent = "Check at least one row before deleting.";
+            return;
+        }
+        const deleteCount = selectedRows.size;
+        [...selectedRows].sort((first, second) => second - first)
+            .forEach((rowIndex) => tableRows.splice(rowIndex, 1));
+        selectedRows.clear();
+        renderTable();
+        tableStatus.textContent = `${deleteCount} row${deleteCount === 1 ? "" : "s"} deleted.`;
+    });
+
+    document.querySelector("#clear-table-rows").addEventListener("click", () => {
+        if (tableRows.length === 0) {
+            tableStatus.textContent = "The table has no rows to remove.";
+            return;
+        }
+        const removedCount = tableRows.length;
+        tableRows.splice(0, tableRows.length);
+        selectedRows.clear();
+        renderTable();
+        tableStatus.textContent = `${removedCount} table row${removedCount === 1 ? "" : "s"} removed.`;
+    });
+
+    function parseDelimitedText(text, delimiter) {
+        const records = [];
+        let record = [];
+        let cell = "";
+        let quoted = false;
+
+        for (let index = 0; index < text.length; index += 1) {
+            const character = text[index];
+            if (character === '"' && quoted && text[index + 1] === '"') {
+                cell += '"';
+                index += 1;
+            } else if (character === '"') {
+                quoted = !quoted;
+            } else if (character === delimiter && !quoted) {
+                record.push(cell);
+                cell = "";
+            } else if ((character === "\n" || character === "\r") && !quoted) {
+                if (character === "\r" && text[index + 1] === "\n") index += 1;
+                record.push(cell);
+                if (record.some((value) => value.trim() !== "")) records.push(record);
+                record = [];
+                cell = "";
+            } else {
+                cell += character;
+            }
+        }
+
+        if (quoted) throw new Error("The file contains an unclosed quoted field.");
+        record.push(cell);
+        if (record.some((value) => value.trim() !== "")) records.push(record);
+        return records;
+    }
+
+    const tableDropZone = document.querySelector("#table-drop-zone");
+    const tableDataFile = document.querySelector("#table-data-file");
+    const tableFileStatus = document.querySelector("#table-file-status");
+
+    async function loadTableFile(file) {
+        const extension = file.name.split(".").pop()?.toLowerCase();
+        if (extension !== "csv" && extension !== "tsv") {
+            tableFileStatus.textContent = "Unsupported file type. Choose a CSV or TSV file.";
+            return;
+        }
+
+        try {
+            const text = await file.text();
+            const records = parseDelimitedText(text, extension === "tsv" ? "\t" : ",");
+            if (records.length < 2) {
+                tableFileStatus.textContent = "The file must contain a header and at least one data row.";
+                return;
+            }
+            const headers = records[0].map((heading, index) =>
+                heading.trim() || `Column ${index + 1}`
+            );
+            const rows = records.slice(1).map((record) =>
+                headers.map((_, index) => record[index] ?? "")
+            );
+
+            tableHeaders.splice(0, tableHeaders.length, ...headers);
+            tableRows.splice(0, tableRows.length, ...rows);
+            selectedRows.clear();
+            document.querySelector("#add-table-row-form").reset();
+            renderAddRowFields();
+            renderTable();
+            tableStatus.textContent = `${rows.length} data row${rows.length === 1 ? "" : "s"} loaded from ${file.name}.`;
+            tableFileStatus.textContent = `Table created from ${file.name}.`;
+        } catch (error) {
+            tableFileStatus.textContent = error instanceof Error
+                ? `Could not read the file: ${error.message}`
+                : "Could not read the selected file.";
+        }
+    }
+
+    tableDataFile.addEventListener("change", () => {
+        const [file] = tableDataFile.files;
+        if (file) loadTableFile(file);
+    });
+    tableDropZone.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        tableDropZone.classList.add("is-dragging");
+    });
+    tableDropZone.addEventListener("dragleave", (event) => {
+        if (!tableDropZone.contains(event.relatedTarget)) {
+            tableDropZone.classList.remove("is-dragging");
+        }
+    });
+    tableDropZone.addEventListener("drop", (event) => {
+        event.preventDefault();
+        tableDropZone.classList.remove("is-dragging");
+        const [file] = event.dataTransfer.files;
+        if (file) loadTableFile(file);
+        else tableFileStatus.textContent = "Drop a CSV or TSV file to create the table.";
+    });
+    tableDropZone.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            tableDataFile.click();
+        }
+    });
+
+    renderAddRowFields();
+    renderTable();
+</script>
 </body>
 </html>
